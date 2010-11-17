@@ -12,6 +12,8 @@ Select "Column statistics" from the drop-down menu of any column header.
 
 h2. Build it yourself
 
+WARNING: THIS IS NOT REALLY TESTED WE WILL ADD BETTER INSTRUCTIONS SOON.
+
 If you modify this extension, you can build by moving into the stats directoy and executing a command such as:
 
 ant -Drefine.dir=/Users/YOU/src/google-refine/main -Dserver.lib.dir=/Users/YOU/src/google-refine/server/lib build
