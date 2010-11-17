@@ -1,0 +1,11 @@
+h1. refine-stats
+
+A extension for Google Refine to compute elementary statistics.
+
+h2. Installation
+
+Copy the stats folder to google-refine/extensions.
+
+h2.  Usage
+
+Select "Column statistics" from the drop-down menu of any column header.
