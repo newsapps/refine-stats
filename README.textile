@@ -33,3 +33,5 @@ refine-stats is a "Newsapps":http://apps.chicagotribune.com/ project. Developmen
 h2. License
 
 MIT.
+
+Note: refine-stats includes the "Apache Commons Math":http://commons.apache.org/math/ library, which is licensed under the Apache Software License.  A copy of this license can be found in /stats/module/MOD-INF/lib/. 
