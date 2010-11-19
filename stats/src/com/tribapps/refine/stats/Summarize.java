@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.JSONWriter;
 
 import com.google.refine.commands.Command;
@@ -18,11 +20,49 @@ import com.google.refine.model.Project;
 import com.google.refine.model.ColumnModel;
 import com.google.refine.model.Column;
 import com.google.refine.model.Row;
+import com.google.refine.browsing.Engine;
+import com.google.refine.browsing.FilteredRows;
+import com.google.refine.browsing.RowVisitor;
+import com.google.refine.util.ParsingUtilities;
 
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math.stat.descriptive.rank.Median;
 
 public class Summarize extends Command {
+    protected RowVisitor createRowVisitor(Project project, int cellIndex, List<Float> values) throws Exception {
+        return new RowVisitor() {
+            int cellIndex;
+            List<Float> values;
+            
+            public RowVisitor init(int cellIndex, List<Float> values) {
+                this.cellIndex = cellIndex;
+                this.values = values;
+                return this;
+            }
+            
+            @Override
+            public void start(Project project) {
+            	// nothing to do
+            }
+            
+            @Override
+            public void end(Project project) {
+            	// nothing to do
+            }
+            
+            public boolean visit(Project project, int rowIndex, Row row) {
+                try {
+                    Number val = (Number)row.getCellValue(this.cellIndex);
+                    this.values.add(val.floatValue());
+                } catch (Exception e) {
+                }
+
+                return false;
+            }
+        }.init(cellIndex, values);
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     };
@@ -37,13 +77,19 @@ public class Summarize extends Command {
 
             List<Float> values = new ArrayList<Float>();
 
-            for (Row row : project.rows) {
-                try {
-                    Number val = (Number)row.getCellValue(cellIndex);
-                    values.add(val.floatValue());
-                } catch (Exception e) {
-                }
+            Engine engine = new Engine(project);
+            JSONObject engineConfig = null;
+
+            try {
+                engineConfig = ParsingUtilities.evaluateJsonStringToObject(request.getParameter("engine"));
+            } catch (JSONException e) {
+                // ignore
             }
+
+            engine.initializeFromJSON(engineConfig);
+
+            FilteredRows filteredRows = engine.getAllFilteredRows();
+            filteredRows.accept(project, createRowVisitor(project, cellIndex, values));
             
             HashMap map = computeStatistics(values);
             JSONWriter writer = new JSONWriter(response.getWriter());
