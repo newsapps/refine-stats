@@ -4,13 +4,19 @@ A extension for Google Refine to compute elementary statistics.
 
 h2. Installation
 
-Copy the stats folder to google-refine/extensions.
+Run Google Refine. On the starting page click the "Browse workspace directory" link in the lower left corner. Make a folder called "extensions" within the the window that pops up.  Copy the stats folder into the extensions folder.  The final path should be:
 
-(This will change in the future.)
+<pre>
+/PATH/TO/google/refine/extensions/stats/...
+</pre>
+
+Restart Google Refine.
+
+(Alternatively, you copy the stats folder into the extensions folder of your Google Refine installation, but it may be lost during upgrades.)
 
 h2.  Usage
 
-Select "Column statistics" from the drop-down menu of any column header.
+Select "Column statistics" from the drop-down menu of any column header.  Statistics will be calculated based on *filtered rows*, so you can facet your dataset in different ways and calculate statistics for each subset.
 
 h2. Build it yourself
 
