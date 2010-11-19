@@ -25,3 +25,11 @@ WARNING: THIS IS NOT REALLY TESTED WE WILL ADD BETTER INSTRUCTIONS SOON.
 If you modify this extension, you can build by changing into the stats directoy and executing a command such as:
 
 ant -Drefine.dir=/Users/YOU/src/google-refine/main -Dserver.lib.dir=/Users/YOU/src/google-refine/server/lib build
+
+h2. Credits
+
+refine-stats is a "Newsapps":http://apps.chicagotribune.com/ project. Development by "Joe Germuska":https://github.com/joegermuska and "Christopher Groskopf":https://github.com/bouvard.
+
+h2. License
+
+MIT.
