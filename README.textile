@@ -7,7 +7,7 @@ h2. Installation
 Run Google Refine. On the starting page click the "Browse workspace directory" link in the lower left corner. Make a folder called "extensions" within the the window that pops up.  Copy the stats folder into the extensions folder.  The final path should be:
 
 <pre>
-/PATH/TO/google/refine/extensions/stats/...
+/PATH/TO/Google/Refine/extensions/stats/...
 </pre>
 
 Restart Google Refine.
