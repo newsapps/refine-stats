@@ -2,7 +2,7 @@ var StatsExtension = {};
 
 DataTableColumnHeaderUI.extendMenu(function(column, columnHeaderUI, menu) {
     var doStatsDialog = function(response) {
-        var dialog = $(DOM.loadHTML("stats", "scripts/stats-dialog.html"));
+        var dialog = $(DOM.loadHTML("refine-stats", "scripts/stats-dialog.html"));
     
         var elmts = DOM.bind(dialog);
         elmts.dialogHeader.text("Statistics for column \"" + column.name + "\"");
@@ -35,7 +35,7 @@ DataTableColumnHeaderUI.extendMenu(function(column, columnHeaderUI, menu) {
         }
 
         Refine.postProcess(
-            "stats",
+            "refine-stats",
             "summarize",
             params,
             body,
@@ -48,7 +48,7 @@ DataTableColumnHeaderUI.extendMenu(function(column, columnHeaderUI, menu) {
         menu,
         [ "core/edit-column" ],
         {
-            id: "stats/summarize",
+            id: "refine-stats/summarize",
             label: "Column statistics",
             click: prepStatsDialog 
         }
