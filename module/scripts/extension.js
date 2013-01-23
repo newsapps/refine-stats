@@ -54,3 +54,4 @@ DataTableColumnHeaderUI.extendMenu(function(column, columnHeaderUI, menu) {
         }
     );
 });
+
