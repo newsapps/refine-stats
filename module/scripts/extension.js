@@ -46,12 +46,15 @@ DataTableColumnHeaderUI.extendMenu(function(column, columnHeaderUI, menu) {
 
     MenuSystem.insertAfter(
         menu,
-        [ "core/edit-column" ],
+        [ "core/transpose" ], 
+        [
+        {},
         {
             id: "refine-stats/summarize",
             label: "Column statistics",
             click: prepStatsDialog 
         }
+        ]
     );
 });
 
